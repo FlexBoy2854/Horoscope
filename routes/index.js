@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const horoscopeController = require('../controllers/horoscopeController'); // 👍 CORRECT
+const horoscopeController = require('../controllers/horoscope');
 
 // Route to display the main form
 router.get('/', horoscopeController.renderForm);
