@@ -1,5 +1,8 @@
-const sqlite3 = require('sqlite3'); // 👈 ADD THIS LINE
-const { open } = require('sqlite'); // 👈 ADD THIS LINE
+const sqlite3 = require('sqlite3');
+const { open } = require('sqlite');
+
+// 👇 DEFINE THE DATABASE PATH HERE
+const DB_PATH = process.env.DATABASE_PATH || './horoscope.db';
 
 // ... (solutionsByMonth and spiritualByMonth data stays the same)
 const solutionsByMonth = {
@@ -44,17 +47,15 @@ exports.renderForm = (req, res) => {
  * @desc Processes form data, saves it, and renders the results page
  * @route POST /submit
  */
-exports.getPrediction = async (req, res) => { // 👈 ADD 'async' HERE
+exports.getPrediction = async (req, res) => {
     const { name, birthdate, location } = req.body;
 
-    // 👇 START: ADDED DATABASE LOGIC
     try {
         const db = await open({
-            filename: './horoscope.db',
+            filename: DB_PATH, // 👈 USE THE DB_PATH VARIABLE
             driver: sqlite3.Database
         });
 
-        // Insert form data into the database
         await db.run(
             'INSERT INTO submissions (name, birthdate, location) VALUES (?, ?, ?)',
             [name, birthdate, location]
@@ -63,9 +64,7 @@ exports.getPrediction = async (req, res) => { // 👈 ADD 'async' HERE
         await db.close();
     } catch (err) {
         console.error('Database error:', err);
-        // Continue even if DB fails, so user still gets a prediction
     }
-    // 👆 END: ADDED DATABASE LOGIC
 
 
     let month = null;
@@ -90,10 +89,10 @@ exports.getPrediction = async (req, res) => { // 👈 ADD 'async' HERE
  * @desc Displays all submissions from the database
  * @route GET /submissions
  */
-exports.viewSubmissions = async (req, res) => { // 👈 ADD THIS ENTIRE NEW FUNCTION
+exports.viewSubmissions = async (req, res) => {
     try {
         const db = await open({
-            filename: './horoscope.db',
+            filename: DB_PATH, // 👈 USE THE DB_PATH VARIABLE
             driver: sqlite3.Database
         });
 

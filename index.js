@@ -6,7 +6,7 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const mainRoutes = require('./routes/index');
-const setupDatabase = require('./database');
+const setupDatabase = require(process.cwd() + '/database.js');
 setupDatabase();
 
 // Initialize Express app
