@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+// This require statement must match the new filename 'horoscope.js'
 const horoscopeController = require('../controllers/horoscope');
 
 // Route to display the main form
