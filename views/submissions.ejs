@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<body class="result-body">
+<header>
+    <h1>🔮 View Submissions</h1>
+</header>
+
+<div class="container result-container" style="max-width: 900px; text-align: left;">
+    <h2>📝 All Saved Entries</h2>
+
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; color: white;">
+            <thead>
+            <tr style="background-color: rgba(255,255,255,0.1);">
+                <th style="padding: 12px; border-bottom: 1px solid #ff99ff;">ID</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ff99ff;">Name</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ff99ff;">Birth Date</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ff99ff;">Location</th>
+                <th style="padding: 12px; border-bottom: 1px solid #ff99ff;">Timestamp</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% submissions.forEach(sub => { %>
+                <tr>
+                    <td style="padding: 10px; border-bottom: 1px solid #555;"><%= sub.id %></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #555;"><%= sub.name %></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #555;"><%= sub.birthdate %></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #555;"><%= sub.location %></td>
+                    <td style="padding: 10px; border-bottom: 1px solid #555;"><%= new Date(sub.timestamp).toLocaleString() %></td>
+                </tr>
+            <% }); %>
+
+            <% if (submissions.length === 0) { %>
+                <tr>
+                    <td colspan="5" style="text-align: center; padding: 20px;">No data has been submitted yet.</td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <a href="/" style="display: inline-block; margin-top: 20px; color: #ff66cc; text-decoration: none;">&larr; Back to Form</a>
+</div>
+
+<%- include('partials/footer') %>
+</body>
+</html>

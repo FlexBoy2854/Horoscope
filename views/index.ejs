@@ -1,0 +1,33 @@
+<html lang="en">
+<%- include('partials/header') %>
+
+<body class="home-body">
+<header class="navbar">
+    <div class="container nav-container">
+        <div class="logo">🔯 KINNER GURU MAA</div>
+    </div>
+</header>
+
+<section class="form-section">
+    <div class="container">
+        <h2 class="glow-text">🌟 Unlock Your Destiny with KINNER GURU MAA</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Enter your birth details and receive divine insight and life guidance. Your stars hold answers. 🔮</p>
+
+        <form action="/submit" method="POST">
+            <label for="name">Your Full Name</label>
+            <input type="text" name="name" id="name" placeholder="e.g. Aarav Sharma" required />
+
+            <label for="birthdate">Birth Date</label>
+            <input type="date" name="birthdate" id="birthdate" required />
+
+            <label for="location">Birth Location</label>
+            <input type="text" name="location" id="location" placeholder="e.g. Delhi, India" required />
+
+            <button type="submit">Get My Prediction ✨</button>
+        </form>
+    </div>
+</section>
+
+<%- include('partials/footer') %>
+</body>
+</html>

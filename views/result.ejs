@@ -1,0 +1,31 @@
+<%- include('partials/header') %>
+
+<body class="result-body">
+<header>
+    <h1>🔮 KINNER GURU MAA</h1>
+</header>
+
+<div class="container result-container">
+    <h2>✨ Your Divine Reading</h2>
+
+    <div class="info">
+        <p><strong>Name:</strong> <%= name %></p>
+        <p><strong>Birth Date:</strong> <%= birthdate %></p>
+        <p><strong>Birth Location:</strong> <%= location %></p>
+    </div>
+
+    <h2>💫 Life Problem Solutions</h2>
+    <ul>
+        <% solutions.forEach(solution => { %>
+            <li><%= solution %></li>
+        <% }); %>
+    </ul>
+
+    <div class="spiritual">
+        <%= spiritualMessage %>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+</body>
+</html>
